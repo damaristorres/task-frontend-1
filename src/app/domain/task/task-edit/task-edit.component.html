@@ -1,0 +1,63 @@
+<p-card>
+    <ng-template pTemplate="header">
+        <app-header  [isEdicion]="true" [titulo]="titulo" [ruta]="ruta"></app-header>
+    </ng-template>
+
+    <div class="p-fluid p-formgrid p-grid">
+        <div class="p-col-12 p-md-6">
+            <div class="card">
+                <div class="p-col-12 p-md-6">
+                        <span style="width: 30px;">
+                            <label for="lblId">ID</label>
+                            <p-inputNumber [disabled]="true" id="lblId" [(ngModel)]="task.id"> </p-inputNumber>
+                        </span>
+                </div>
+                
+                <div class="p-field">
+                    <span>
+                        <label for="lblTitulo">Titulo</label>
+                        <input type="text" id="lblTitulo" pInputText [(ngModel)]="task.titulo"> 
+                        
+                    </span>
+                </div>
+
+                <div class="p-field">
+                    <span>
+                        <label for="lblFecha">Fecha</label>
+                        <p-calendar id="lblFecha" [(ngModel)]="task.fechaCreacion" [showTime]="true" [showIcon]="true" ></p-calendar>
+                        
+                    </span>
+                </div>
+
+                <div class="p-field">
+                    <span>
+                        <label for="lblDescripcion">Descripcion</label>
+                        <textarea id="lblDescripcion" [(ngModel)]="task.descripcion" pInputTextarea></textarea>
+                        
+                    </span>
+                </div>
+
+                <div class="p-field">
+                    <span>
+                        <label for="lblNivel">Nivel</label>
+                        <p-dropdown [options]="niveles" [(ngModel)]="task.nivelPrioridad" placeholder="Seleccione" optionLabel="label" optionValue="value"></p-dropdown>
+                    </span>
+                </div>
+
+                <div class="p-field">
+                    <span>
+                        <label for="lblStatus">Estado</label>
+                        <p-dropdown [options]="estados" [(ngModel)]="task.status" placeholder="Seleccione" optionValue="value" optionLabel="label"></p-dropdown>
+                    </span>
+                </div>
+
+    
+                <div class="p-field" style="margin-top: 10px;">
+                    <button pButton pRipple type="button" (click)="isModoEdicion ? update() : add()" styleClass="p-button-success p-mr-2 p-mb-2"  label="Guardar" ></button>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+
+</p-card>

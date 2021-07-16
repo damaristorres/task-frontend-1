@@ -1,0 +1,95 @@
+.card {
+    margin: 10px;
+    margin-bottom: 0px;
+}
+
+.ui-toolbar-group-right {
+    margin-right: 8% !important
+}
+
+.ui-steps .ui-steps-item {
+    width: 25%;
+    margin-right: 2em;
+    margin-left: 2em;
+}
+
+.ui-steps.steps-custom {
+    margin-bottom: 30px;
+}
+
+.ui-steps.steps-custom .ui-steps-item .ui-menuitem-link {
+    padding: 0 1em;
+    overflow: visible;
+}
+
+.ui-steps.steps-custom .ui-steps-item .ui-steps-number {
+    background-color: #0081c2;
+    color: #FFFFFF;
+    display: inline-block;
+    width: 36px;
+    border-radius: 50%;
+    margin-top: -14px;
+    margin-bottom: 10px;
+}
+
+.ui-steps.steps-custom .ui-steps-item .ui-steps-title {
+    color: #5510d6;
+}
+
+ul {
+    columns: 3;
+    -webkit-columns: 3;
+    -moz-columns: 3;
+}
+
+.cell-disabled {
+    color: rgb(170, 170, 170);
+}
+
+customsteps {
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
+.container-situacao {
+    float: right;
+    background-color: #75757524;
+    position: fixed;
+    right: 4rem;
+    width: 7rem;
+    top: 22rem;
+}
+
+app-situacao {
+    min-width: 110px !important;
+    margin-left: 0% !important;
+}
+
+.ui-situacao-cadastro {
+    min-width: 5em;
+}
+
+@media only screen and (max-width: 767px) {
+    .container-situacao {
+        top: 25rem;
+    }
+}
+
+@media only screen and (min-width: 766px) and (max-width: 661px) {
+    .container-situacao {
+        top: 28.5rem;
+    }
+}
+
+@media only screen and (min-width: 660px) and (max-width: 640px) {
+    .container-situacao {
+        top: 24rem;
+    }
+}
+
+@media only screen and (min-width: 641px) and (max-width: 576px) {
+
+    .container-situacao {
+        display: none;
+    }
+}
