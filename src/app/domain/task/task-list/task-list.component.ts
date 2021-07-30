@@ -42,7 +42,7 @@ export class TaskListComponent implements OnInit {
 
   delete(id: any) {
     this.confirmationService.confirm({
-      message: 'Está seguro que desea eliminar esta entidad?',
+      message: 'Está seguro que desea eliminar esta tarea?',
       accept: () => {
         this.service.delete(id)
           .subscribe(

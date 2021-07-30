@@ -51,7 +51,64 @@
                     </span>
                 </div>
 
-    
+                <div class="card" style="margin: 20px;">
+                    <p-table [value]="subtask" #dt1 dataKey="id" >
+
+                        <ng-template pTemplate="caption">
+                            <div class="table-header" style="text-align: center;">
+                                SubTask            
+                            </div>
+                        </ng-template>
+
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th pSortableColumn="id">
+                                    ID
+                                    <p-sortIcon field="id"></p-sortIcon>
+                                    <p-columnFilter type="text" field="id" display="menu"></p-columnFilter>
+                                </th>
+            
+                                <th pSortableColumn="name">
+                                    Name
+                                    <p-sortIcon field="name"></p-sortIcon>
+                                    <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+                                </th>
+
+                                <th pSortableColumn="date">
+                                    Date
+                                    <p-sortIcon field="date"></p-sortIcon>
+                                    <p-columnFilter type="text" field="date" display="menu"></p-columnFilter>
+                                </th>
+
+                                <th pSortableColumn="descripcion">
+                                    Descripcion
+                                    <p-sortIcon field="descripcion"></p-sortIcon>
+                                    <p-columnFilter type="text" field="descripcion" display="menu"></p-columnFilter>
+                                </th>
+
+                                <th>
+                                    Opciones
+                                </th>
+
+                        </ng-template>
+            
+            
+                        <ng-template pTemplate="body" let-subtask>
+                            <tr>
+                                <td>{{subtask.id}}</td>
+                                <td>{{subtask.name}}</td>
+                                <td>{{subtask.date}}</td>
+                                <td>{{subtask.descripcion}}</td>
+
+                                <td>
+                                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success"></button>
+                                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            
                 <div class="p-field" style="margin-top: 10px;">
                     <button pButton pRipple type="button" (click)="isModoEdicion ? update() : add()" styleClass="p-button-success p-mr-2 p-mb-2"  label="Guardar" ></button>
                 </div>
