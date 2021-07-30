@@ -57,7 +57,7 @@
                     <td>{{task.nivelPrioridad}}</td>
                     <td>{{task.status}}</td>
                     <td>
-                        <button pButton pRipple icon="pi pi-pencil" [routerLink]="['/task', task.id]"  class="p-button-rounded p-button-success p-mr-2" ></button>
+                        <button pButton pRipple icon="pi pi-ellipsis-h" [routerLink]="['/task', task.id]"  class="p-button-rounded p-button-success p-mr-2" ></button>
                         <button pButton pRipple icon="pi pi-trash" (click)="delete(task.id)" class="p-button-rounded p-button-warning"></button>
                     </td>
                 </tr>
