@@ -18,6 +18,7 @@ export class TaskEditComponent implements OnInit {
 
   //atributos
   task = new Task();
+  subtasks = new SubTask();
 
   isModoEdicion: boolean = false;
 
@@ -31,7 +32,13 @@ export class TaskEditComponent implements OnInit {
 
   subtask: SubTask[] = [];
 
-  display: boolean = false;
+  displayDialog: boolean = false;
+
+  subtaskDialog: boolean;
+
+  submitted: boolean;
+
+  subtaskEdit: SubTask;
 
   constructor(
     private router: Router,
@@ -99,18 +106,6 @@ export class TaskEditComponent implements OnInit {
       )
   }
 
-  /*openNew() {
-    this.subtaskService.add(this.subtasks)
-    .subscribe(
-      () => {
-        this.returnList();
-      },
-      (error) => {
-        console.error();
-      }
-    )
-}*/
-
   update() {
     this.service.update(this.task)
       .subscribe(
@@ -123,50 +118,66 @@ export class TaskEditComponent implements OnInit {
       )
   }
 
-  /*addSubtask() {
-    this.subtaskService.add(this.tasksk)
-      .subscribe(
-        () => {
-          this.returnToList();
-        },
-        (error) => {
-          console.error(error)
-        }
-      )
-  }*/
+  delete(subtask: SubTask) {
+    this.confirmationService.confirm({
+      message: 'Está seguro que desea eliminar esta subtarea?',
+      accept: () => {
+        this.subtaskService.delete(subtask.id)
+          .subscribe(
+            (res) => {
+              this.getSubtaskById(this.task.id);
+            },
+            (error) => {
+              this.displayDialog = true;
+            }
+          )
+      },
+      acceptLabel: "Confirmar",
+      acceptButtonStyleClass: "p-button-danger p-mr-2"
+    });
+  }
 
-  // getSubtasks(){
-  //   this.subtaskService.getAll()
-  //   .subscribe(
-  //     (res) => {
-  //       this.subtask = res;
-  //       console.log(this.subtask);
-  //     },
-  //     (err) => {
-  //       console.error(err);
-  //     }
-  //   )
-  // }
+  hideDialog() {
+    this.subtaskDialog = false;
+}
 
-  // deleteSubtask(id: any) {
-  //   this.confirmationService.confirm({
-  //     message: 'Está seguro que desea eliminar esta tarea?',
-  //     accept: () => {
-  //       this.service.delete(id)
-  //         .subscribe(
-  //           (res) => {
-  //             this.getSubtasks();
-  //           },
-  //           (error) => {
-  //             this.display = true;
-  //           }
-  //         )
-  //     },
-  //     acceptLabel: "Confirmar",
-  //     acceptButtonStyleClass: "p-button-danger p-mr-2"
-  //   });
-  // } 
-  
+  editSubtask(subtask: SubTask){
+    this.subtaskEdit = subtask;
+    this.subtaskEdit.date = new Date(subtask.date);
+    this.subtaskDialog = true;
+  }
+
+  saveSubtask(subtask: SubTask){
+    if(subtask.id){
+      this.subtaskService.update(subtask)
+          .subscribe(
+            (res) => {
+              this.getSubtaskById(this.task.id);
+              this.hideDialog();
+            },
+            (error) => {
+              this.displayDialog = true;
+            }
+          )
+    }else{
+      subtask.task = this.task;
+      this.subtaskService.add(subtask)
+          .subscribe(
+            (res) => {
+              this.getSubtaskById(this.task.id);
+              this.hideDialog();
+            },
+            (error) => {
+              this.displayDialog = true;
+            }
+          )
+    }
+  }
+
+  addSubtask(){
+    this.subtaskEdit = new SubTask();
+    this.subtaskDialog = true;
+  }
 
   returnToList() {
     this.router.navigate([this.ruta]);
