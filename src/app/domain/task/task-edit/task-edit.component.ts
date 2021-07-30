@@ -149,7 +149,11 @@ export class TaskEditComponent implements OnInit {
 
   saveSubtask(subtask: SubTask){
     if(subtask.id){
-      this.subtaskService.update(subtask)
+      let auxiliar: any = {...subtask, task: this.task.id}
+      // console.log(subtask);
+      console.log(auxiliar);
+      // this.subtaskService.update(subtask)
+      this.subtaskService.update(auxiliar)
           .subscribe(
             (res) => {
               this.getSubtaskById(this.task.id);
