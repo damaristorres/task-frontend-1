@@ -51,7 +51,7 @@
                     </span>
                 </div>
 
-                <div class="card" style="margin: 20px;">
+                <div *ngIf="task.id" class="card" style="margin: 20px;">
                     <p-table [value]="subtask" #dt1 dataKey="id" >
 
                         <ng-template pTemplate="caption">

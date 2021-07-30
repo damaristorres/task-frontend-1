@@ -97,7 +97,7 @@ export class TaskEditComponent implements OnInit {
   add() {
     this.service.add(this.task)
       .subscribe(
-        () => {
+        (data) => {
           this.returnToList();
         },
         (error) => {
